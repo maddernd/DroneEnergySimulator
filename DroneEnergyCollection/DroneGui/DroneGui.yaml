@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dronegui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dronegui
+  template:
+    metadata:
+      labels:
+        app: dronegui
+    spec:
+      containers:
+      - name: dronegui
+        image: dronegui:latest
