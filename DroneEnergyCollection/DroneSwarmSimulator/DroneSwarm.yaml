@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: droneswarm-deployment
+spec:
+  replicas: 3  # This creates three replicas/pods.
+  selector:
+    matchLabels:
+      app: droneswarm
+  template:
+    metadata:
+      labels:
+        app: droneswarm
+    spec:
+      containers:
+      - name: droneswarm
+        image: droneswarm:latest
+        env:
+        - name: SWARM_NAME
+          value: "Swarm1"  # Here you'd ideally use unique swarm names for different deployments.
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
